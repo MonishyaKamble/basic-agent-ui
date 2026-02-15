@@ -31,7 +31,7 @@ export async function POST(req: Request) {
 
     // Parse agent configuration from request body
     const body = await req.json();
-    const agentName = "CA_MEBJ6QYTJ8Qi";
+    const agentName = 'CA_MEBJ6QYTJ8Qi';
 
     // Generate participant token
     const participantName = 'user';
@@ -39,9 +39,9 @@ export async function POST(req: Request) {
     const roomName = `voice_assistant_room_${Math.floor(Math.random() * 10_000)}`;
 
     const participantToken = await createParticipantToken(
-  { identity: participantIdentity, name: participantName },
-  roomName
-);
+      { identity: participantIdentity, name: participantName },
+      roomName
+    );
     // Return connection details
     const data: ConnectionDetails = {
       serverUrl: LIVEKIT_URL,
@@ -61,10 +61,7 @@ export async function POST(req: Request) {
   }
 }
 
-function createParticipantToken(
-  userInfo: AccessTokenOptions,
-  roomName: string
-): Promise<string> {
+function createParticipantToken(userInfo: AccessTokenOptions, roomName: string): Promise<string> {
   const at = new AccessToken(API_KEY, API_SECRET, {
     ...userInfo,
     ttl: '15m',
